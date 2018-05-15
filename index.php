@@ -3,33 +3,35 @@
 ini_set('display_errors', 1);
 ini_set('error_reporting', E_ALL);
 
-require_once 'function.php';
+require_once 'Helper.class.php';
+require_once 'Users.class.php';
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'index';
+$objUsers = new Users();
 
 switch ($action) {
-    case 'add' : {
+    case 'add': {
         require_once 'template/save.php';
         break;
     }
-    case 'save' : {
-        addUser();
-        goToHome();
+    case 'save': {
+        $objUsers->addUser();
+        Helper::goToHome();
         break;
     }
-    case 'edit' : {
-        $user = getUser((int) $_GET['id']);
+    case 'edit': {
+        $user = $objUsers->getUser((int) $_GET['id']);
         require_once 'template/rewrite.php';
         break;
     }
-    case 'rewrite' : {
-        setUser();
-        goToHome();
+    case 'rewrite': {
+        $objUsers->setUser();
+        Helper::goToHome();
         break;
     }
-    case 'index' :
+    case 'index':
     default: {
-        $users = getUsers();
+        $users = $objUsers->getUsers();
         require_once 'template/base.php';
         break;
     }
