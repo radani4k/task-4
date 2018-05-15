@@ -30,9 +30,13 @@
                 <td><?php echo $user['phone']?></td>
                 <td><?php echo $user['room']?></td>
                 <td width="160">
-                    <a href="./?action=edit&id=<?php echo $item?>">Edit</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="./?action=delete&id=<?php echo $item?>">Delete</a>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <a href="./?action=edit&id=<?php echo $item?>" class="btn btn-link btn-">Edit</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;    <form action="delete.php" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $item?>">
+                            <button type="submit" class="btn btn-link">Delete</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         <?php endforeach; ?>

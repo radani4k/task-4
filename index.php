@@ -27,11 +27,6 @@ switch ($action) {
         goToHome();
         break;
     }
-    case 'delete' : {
-        removeUser((int) $_GET['id']);
-        goToHome();
-        break;
-    }
     case 'index' :
     default: {
         $users = getUsers();

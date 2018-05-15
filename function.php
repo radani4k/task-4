@@ -37,16 +37,20 @@ function setUser() {
 
     $newData = serialize($users);
 
-    return file_put_contents('data_users.txt', $newData);
+    return file_put_contents(PATH_FILE, $newData);
 }
 
 function removeUser($item) {
-    $users = getUsers();
-    unset($users[$item]);
+    if (0 <= $item) {
+        $users = getUsers();
+        unset($users[$item]);
 
-    $newData = serialize($users);
+        $newData = serialize($users);
 
-    return file_put_contents(PATH_FILE, $newData);
+        return file_put_contents(PATH_FILE, $newData);
+    }
+
+    return $item;
 }
 
 function addUser() {
